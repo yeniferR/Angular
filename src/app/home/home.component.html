@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ISO</title>
+</head>
+<body>
+  
+      <div class="center">
+          <label>Ingrese un codigo ISO</label>
+          <br>
+          
+            <input type="text" style="width: 20%;" maxlength="3" [(ngModel)]="valor" >
+            <br>
+            <br>
+          <button  (click)="getResulIso()">BUSCAR</button>
+          <br>
+          <br>
+
+          <table *ngIf='resultado != null'>
+            
+            <tr>
+              <th>Código ISO</th>
+              <th>Nombre</th>
+              <th>Capital</th>
+              <th>region</th>
+              <th>Subregion</th>
+            </tr>
+            <tr *ngFor ="let pais of resultado">
+              <td>{{pais.alpha3Code}}</td>
+              <td>{{pais.name}}</td>
+              <td>{{pais.capital}}</td>
+              <td>{{pais.region}}</td>
+              <td>{{pais.subregion}}</td>
+              
+        
+            </tr>
+          </table>
+    
+  </div>
+
+  
+</body>
+</html>
