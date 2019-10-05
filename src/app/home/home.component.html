@@ -4,41 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ISO</title>
+  <title>Productos</title>
 </head>
 <body>
+    <nav>
+        <div >
+            <ul>   
+                <li><a href="">Inisio de sesíon</a></li>
+              </ul>   
+        </div>
+        <div >
+          <ul>
+            <li><a href="">consulta de productos</a></li>
+          </ul>
+        </div>
+    
+      </nav>
   
       <div class="center">
-          <label>Ingrese un codigo ISO</label>
-          <br>
-          
-            <input type="text" style="width: 20%;" maxlength="3" [(ngModel)]="valor" >
-            <br>
-            <br>
-          <button  (click)="getResulIso()">BUSCAR</button>
-          <br>
-          <br>
 
-          <table *ngIf='resultado != null'>
-            
-            <tr>
-              <th>Código ISO</th>
-              <th>Nombre</th>
-              <th>Capital</th>
-              <th>region</th>
-              <th>Subregion</th>
-            </tr>
-            <tr *ngFor ="let pais of resultado">
-              <td>{{pais.alpha3Code}}</td>
-              <td>{{pais.name}}</td>
-              <td>{{pais.capital}}</td>
-              <td>{{pais.region}}</td>
-              <td>{{pais.subregion}}</td>
-              
+          <form>
+              <label>ID</label>
+              <br>
+              <input type="number" name= "capturaID" [(ngModel)]="capturaID" class="data" required>
+              <br>
+              <label >Nombre del producto</label>
+              <br>
+              <input type="text" name="capturaProduct" id="capturaProduct" [(ngModel)]="capturaProduct"  class="data" required>
+              <br>
+              <label >Características</label>
+              <br>
+              <input type="text" name="CaracteristicasProduct"  [(ngModel)]="CaracteristicasProduct" class="data" required>
         
-            </tr>
-          </table>
-    
+              <br>
+              <label for="">Fecha de lanzamiento </label>
+              <br>
+              <input type="date" name="capturaFecha" id="capturaFecha" [(ngModel)]="capturaFecha"  class="data" required>
+              <br>
+              <label for="">Correo fabricante</label>
+              <br>
+              <input type="email" name="capturaCorreo" id="capturaCorreo" [(ngModel)]="capturaCorreo" class="data" required >
+              <br>
+              <label for="">Pais de Fabricante</label>
+              <br>
+              <select [(ngModel)]="data" (ngModelChange)="dataChangedPais($event)" name="data" class="data" required> 
+                <option *ngFor="let datapais of resultado" [ngValue]="datapais">
+                    {{datapais.name}}
+                </option>
+              </select>
+              <br>
+              <label>Precio</label>
+              <br>
+              <input type="number" name="capturaPrecio"  [(ngModel)]="capturaPrecio" class="data" required >
+              <br>
+              <label>Unidades disponibles</label>
+              <br>
+              <input type="number" name="capturaDisponibles"   [(ngModel)]="capturaDisponibles" class="data" required>
+              <br>
+              <label>Unidades vendidas </label>
+              <br>
+              <input type="number" name="capturaVendidas"   [(ngModel)]="capturaVendidas" class="data" required>
+              <br>
+              <br>
+             
+              <button  (click)="onGetSave()">Guardar</button>
+              <br> 
+              <br>
+              <!-- <button>Cerrar</button> -->
+              
+            </form>
   </div>
 
   

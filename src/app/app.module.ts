@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DataApiService} from 'src/app/services/data-api.service';
 import { HomeComponent } from './home/home.component'
 import {HttpClientModule} from '@angular/common/http';
+import { ConsultaComponent } from './consulta/consulta.component';
 
 
 
@@ -14,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
   declarations: [
     AppComponent,
     HomeComponent,
+    ConsultaComponent,
     
   ],
   imports: [

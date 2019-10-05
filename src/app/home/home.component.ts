@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { DataApiService } from '../services/data-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,40 +9,70 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-valor:any='';
-resultado:any[];
+
+resultado:Array<any>;
 valuesObject:any;
 CadenaB: string;
-miLista:Array< any>=[];
-data: any =[];
+data: any;
+consultItemSelected:any;
+capturaID:any;
+capturaProduct:string;
+capturaFecha:any;
+capturaCorreo:any;
+capturaPrecio:any;
+capturaDisponibles:any;
+capturaVendidas:any;
+datanombre:any;
+CaracteristicasProduct:any;
+
 
   constructor(  private route: ActivatedRoute,
     private router: Router,private dataApi: DataApiService) { }
 
   ngOnInit() {
+    this.getResulIso();
   }
 
-  getResulIso(){
-    if (this.valor ==='') {
-      this.resultado = null;
-      alert('Por favor corrija el valor ingresado');
-      
-    } else{
-      this.dataApi.getIso(this.valor).subscribe((json)=>{   
+  private getResulIso(){
+    
+      this.dataApi.getIso().subscribe((json)=>{   
         this.resultCompleted(json);
-      }, error =>{
-
-      alert("Por favor ingrese un valor valido");
-      console.log(error)
-      this.resultado = null;
       });
   }
-  }
-  private resultCompleted(result:any):void{    
-    this.resultado =new Array<any>();
-      this.resultado.push(result);
+ resultCompleted(result:any):void{  
+      this.resultado=result;
+
   }
  
+  dataChangedPais(event:any){
+  this.datanombre=event.name;
+
+  }
+  onGetSave(){
+    this.dataApi.getForm(this.capturaID,
+      this.capturaProduct,
+      this.CaracteristicasProduct,
+      this.capturaFecha,
+      this.capturaCorreo,
+      this.datanombre,
+      this.capturaPrecio,
+      this.capturaDisponibles,
+      this.capturaVendidas).subscribe((json)=>{   
+      this.resultCompleted(json);
+      
+      
+    }); 
+    this.capturaID=null;
+      this.capturaProduct=null;
+      this.CaracteristicasProduct=null;
+      this.capturaFecha=null;
+      this.capturaCorreo=null;
+      this.data=null;
+      this.capturaPrecio=null;
+      this.capturaDisponibles=null;
+      this.capturaVendidas=null;
+     alert("Producto Resgitrado Correctamente");
+  }
 
 }
 
